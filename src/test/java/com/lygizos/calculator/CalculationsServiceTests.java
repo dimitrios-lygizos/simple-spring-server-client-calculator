@@ -192,7 +192,7 @@ public class CalculationsServiceTests {
      */
     @Test
     public void testSubPositiveDigits() {
-        double x = 53;
+        double x = 53.678;
         double y = 32.9;
 
         double result = cs.doSubtract(x,y);
@@ -201,7 +201,7 @@ public class CalculationsServiceTests {
 
     @Test
     public void testSubNegativeDigits() {
-        double x = -19;
+        double x = -19.0194;
         double y = -29.2;
 
         double result = cs.doSubtract(x,y);
@@ -251,5 +251,71 @@ public class CalculationsServiceTests {
 
         double result = cs.doSubtract(x,y);
         assertEquals(result, x-y);
+    }
+
+    /**
+     * Modulo TEST SECTION
+     */
+    @Test
+    public void testModuloPositiveDigits() {
+        double x = 53.678;
+        double y = 32.9;
+
+        double result = cs.doModulo(x,y);
+        assertEquals(result, x%y);
+    }
+
+    @Test
+    public void testModuloNegativeDigits() {
+        double x = -19.0194;
+        double y = -29.2;
+
+        double result = cs.doModulo(x,y);
+        assertEquals(result, x%y);
+    }
+
+    @Test
+    public void testModuloPositiveAndNegativeDigits() {
+        double x = 109.7;
+        double y = -20;
+
+        double result = cs.doModulo(x,y);
+        assertEquals(result, x%y);
+    }
+
+    @Test
+    public void testModuloPositiveAndZeroDigits() {
+        double x = 0;
+        double y = 3.9;
+
+        double result = cs.doModulo(x,y);
+        assertEquals(result, x%y);
+    }
+
+    @Test
+    public void testModuloNegativeAndZeroDigits() {
+        double x = 0;
+        double y = -10.5;
+
+        double result = cs.doModulo(x,y);
+        assertEquals(result, x%y);
+    }
+
+    @Test
+    public void test_Modulo_Throws_Exception_When_Nominator_is_Zero() {
+        double x = -999.999;
+        double y = 0;
+
+        ArithmeticException ex = assertThrows(ArithmeticException.class, () -> cs.doModulo(x,y));
+        assertEquals(ex.getMessage(), "Division by zero! -.-");
+    }
+
+    @Test
+    public void testModuloRandomDigits() {
+        double x = random.nextDouble();
+        double y = random.nextDouble();
+
+        double result = cs.doModulo(x,y);
+        assertEquals(result, x%y);
     }
 }
