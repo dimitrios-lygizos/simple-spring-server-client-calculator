@@ -17,9 +17,9 @@ public class CalculationsService {
 
     // Division
     public Double doDivide(double x, double y) {
-        if(y==0.0) {
+        if (y==0.0)
             throw new ArithmeticException("Division by zero! -.-");
-        }
+
         return x/y;
     }
 
@@ -30,9 +30,9 @@ public class CalculationsService {
 
     // modulo division
     public Double doModulo(double x, double y) {
-        if(y==0.0) {
+        if (y==0.0)
             throw new ArithmeticException("Division by zero! -.-");
-        }
+
         return x%y;
     }
 

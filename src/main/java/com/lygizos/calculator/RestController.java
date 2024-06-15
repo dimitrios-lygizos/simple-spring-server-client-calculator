@@ -1,6 +1,7 @@
 package com.lygizos.calculator;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @org.springframework.web.bind.annotation.RestController
 public class RestController {
@@ -11,25 +12,37 @@ public class RestController {
     }
 
     @PostMapping("/add")
-    public String add() {
-        return "";
+    public ResponseContentDto add(
+            @RequestBody RequestContentDto request
+    ) {
+        return new ResponseContentDto(calculationService.doAdd(request.x(), request.y()));
     }
 
     @PostMapping("/multiply")
-    public String multiply() {
-        return "";
-
+    public ResponseContentDto multiply(
+            @RequestBody RequestContentDto request
+    ) {
+        return new ResponseContentDto(calculationService.doMulti(request.x(), request.y()));
     }
 
     @PostMapping("/divide")
-    public String div() {
-
-        return "";
+    public ResponseContentDto div(
+            @RequestBody RequestContentDto request
+    ) {
+        return new ResponseContentDto(calculationService.doDivide(request.x(), request.y()));
     }
 
     @PostMapping("/subtract")
-    public String subtract() {
+    public ResponseContentDto subtract(
+            @RequestBody RequestContentDto request
+    ) {
+        return new ResponseContentDto(calculationService.doSubtract(request.x(), request.y()));
+    }
 
-        return "";
+    @PostMapping("/modulo")
+    public ResponseContentDto modulo(
+            @RequestBody RequestContentDto request
+    ) {
+        return new ResponseContentDto(calculationService.doModulo(request.x(), request.y()));
     }
 }
