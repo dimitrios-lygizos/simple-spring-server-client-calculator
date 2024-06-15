@@ -29,7 +29,7 @@ public class CalculationsService {
     }
 
     // modulo division
-    public Double modulo(double x, double y) {
+    public Double doModulo(double x, double y) {
         if(y==0.0) {
             throw new ArithmeticException("Division by zero! -.-");
         }
