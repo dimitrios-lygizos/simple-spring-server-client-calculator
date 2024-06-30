@@ -1,7 +1,15 @@
 package com.lygizos.calculator;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+import java.util.HashMap;
 
 @org.springframework.web.bind.annotation.RestController
 public class RestController {
@@ -12,6 +20,7 @@ public class RestController {
     }
 
     @PostMapping("/add")
+    @ResponseStatus(HttpStatus.OK)
     public ResponseContentDto add(
             @RequestBody RequestContentDto request
     ) {
@@ -19,6 +28,7 @@ public class RestController {
     }
 
     @PostMapping("/multiply")
+    @ResponseStatus(HttpStatus.OK)
     public ResponseContentDto multiply(
             @RequestBody RequestContentDto request
     ) {
@@ -26,6 +36,7 @@ public class RestController {
     }
 
     @PostMapping("/divide")
+    @ResponseStatus(HttpStatus.OK)
     public ResponseContentDto div(
             @RequestBody RequestContentDto request
     ) {
@@ -33,6 +44,7 @@ public class RestController {
     }
 
     @PostMapping("/subtract")
+    @ResponseStatus(HttpStatus.OK)
     public ResponseContentDto subtract(
             @RequestBody RequestContentDto request
     ) {
@@ -40,9 +52,34 @@ public class RestController {
     }
 
     @PostMapping("/modulo")
+    @ResponseStatus(HttpStatus.OK)
     public ResponseContentDto modulo(
             @RequestBody RequestContentDto request
     ) {
         return new ResponseContentDto(calculationService.doModulo(request.x(), request.y()));
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<?> handleMethodArgument(
+            MethodArgumentNotValidException exception
+    ) {
+        var errors = new HashMap<String, String>();
+        exception.getBindingResult().getAllErrors().forEach(
+                error -> {
+                    var fieldName = ((FieldError) error).getField();
+                    var errorMessage = error.getDefaultMessage();
+                    errors.putIfAbsent(fieldName,errorMessage);
+                });
+        return new ResponseEntity<>(errors,HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<?> handleOtherExceptions(
+            Exception exception
+    ) {
+        exception.printStackTrace();
+        var errors = new HashMap<String, String>();
+        errors.putIfAbsent("Error Message", exception.getMessage());
+        return new ResponseEntity<>(errors,HttpStatus.BAD_REQUEST);
     }
 }
