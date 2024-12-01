@@ -1,0 +1,63 @@
+openapi: "3.0.2"
+info:
+  title: Simple Test Calculator
+  version: 1.0-pre_test
+  description: A calculator supporting the 6 most common arithmetic operations -addition (+), subtraction(-), multiplication(*), division(/), division remainder or modulo(%) -
+  contact:
+    name: Dimitrios Lygizos
+    email: lyzadmortem@gmail.com
+servers:
+  - url: http://localhost:8080/api
+paths:
+  /add:
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/inputJson'
+      responses:
+        '200':
+          description: OK
+  /multiply:
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/inputJson'
+  /divide:
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/inputJson'
+  /subtract:
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+  /modulo:
+    post:
+      requestBody:
+        required: true
+        content:
+components:
+  schemas:
+    inputNumberObject:
+      type: number
+      example: 3.2
+    inputJson:
+      type: object
+      properties:
+        first_number:
+          $ref: '#/components/schemas/inputNumberObject'
+        second_number:
+          $ref: '#/components/schemas/inputNumberObject'
+
+
