@@ -4,10 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -15,6 +12,7 @@ import java.util.function.Supplier;
 import java.util.logging.Logger;
 
 @org.springframework.web.bind.annotation.RestController
+@CrossOrigin(origins = "http://localhost:61112") // For SWAGGER OAD try
 public class RestController {
     private static final java.util.logging.Logger LOGGER = Logger.getLogger(RestController.class.getSimpleName());
     private final CalculationsService calculationService;

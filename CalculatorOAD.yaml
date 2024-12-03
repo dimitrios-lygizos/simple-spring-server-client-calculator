@@ -28,6 +28,9 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/inputJson'
+      responses:
+        '200':
+          description: OK
   /divide:
     post:
       requestBody:
@@ -36,17 +39,31 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/inputJson'
+      responses:
+        '200':
+          description: OK
   /subtract:
     post:
       requestBody:
         required: true
         content:
           application/json:
+            schema:
+              $ref: '#/components/schemas/inputJson'
+      responses:
+        '200':
+          description: OK
   /modulo:
     post:
       requestBody:
         required: true
         content:
+          application/json:
+            schema:
+              $ref: '#'#/components/schemas/inputJson'
+      responses:
+        '200':
+          description: OK
 components:
   schemas:
     inputNumberObject:
