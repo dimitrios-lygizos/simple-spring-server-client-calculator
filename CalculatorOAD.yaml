@@ -11,6 +11,7 @@ servers:
 paths:
   /add:
     post:
+      description: Perform add operation, add second_number to first_number and get the result
       requestBody:
         required: true
         content:
@@ -19,9 +20,26 @@ paths:
               $ref: '#/components/schemas/inputJson'
       responses:
         '200':
-          description: OK
+          description: Successful add operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/successfulResponse'
+        '400':
+          description: Bad Request (add)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        default:
+          description: Client or server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genError'
   /multiply:
     post:
+      description: Perform multiply operation, multiply first_number by second_number and get the result.
       requestBody:
         required: true
         content:
@@ -30,9 +48,26 @@ paths:
               $ref: '#/components/schemas/inputJson'
       responses:
         '200':
-          description: OK
+          description: Successful multiply operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/successfulResponse'
+        '400':
+          description: Bad Request (multiply)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        default:
+          description: Client or server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genError'
   /divide:
     post:
+      description: Perform divide operation, divide first_number by second_number and retrieve the result.
       requestBody:
         required: true
         content:
@@ -41,9 +76,26 @@ paths:
               $ref: '#/components/schemas/inputJson'
       responses:
         '200':
-          description: OK
+          description: Successful divide operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/successfulResponse'
+        '400':
+          description: Bad Request (divide) error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        default:
+          description: Client or server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genError'
   /subtract:
     post:
+      description: subtract second_number from first_number and retrieve the result.
       requestBody:
         required: true
         content:
@@ -52,18 +104,51 @@ paths:
               $ref: '#/components/schemas/inputJson'
       responses:
         '200':
-          description: OK
+          description: Successful subtract operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/successfulResponse'
+        '400':
+          description: Bad Request (subtract) error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        default:
+          description: Client or server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genError'
   /modulo:
     post:
+      description: get the remainder of first_number divided by second_number.
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#'#/components/schemas/inputJson'
+              $ref: '#/components/schemas/inputJson'
       responses:
         '200':
-          description: OK
+          description: Successful modulo operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/successfulResponse'
+        '400':
+          description: Bad Request (modulo)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        default:
+          description: Client or server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/genError'
 components:
   schemas:
     inputNumberObject:
@@ -76,5 +161,47 @@ components:
           $ref: '#/components/schemas/inputNumberObject'
         second_number:
           $ref: '#/components/schemas/inputNumberObject'
+    successfulResponse:
+      type: object
+      required:
+        - result
+      properties:
+        result:
+          type: number
+          example: 9.99
+    error:
+      type: object
+      required:
+        - status
+        - httpCode
+      properties:
+        status:
+          type: string
+          example: "BAD_REQUEST"
+        httpCode:
+          type: number
+          example: 400
+        message:
+          type: string
+          example: "Malformed JSON request"
+        debugMessage:
+          type: string
+          example: "JSON parse error"
+    genError:
+      type: object
+      required:
+        - status
+        - httpCode
+      properties:
+        status:
+          type: string
+          example: "SERVER_ERROR"
+        httpCode:
+          type: number
+          example: 500
+        message:
+          type: string
+          example: "Unexpected error occurred"
+
 
 

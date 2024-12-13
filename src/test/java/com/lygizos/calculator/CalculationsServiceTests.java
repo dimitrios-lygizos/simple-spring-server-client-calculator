@@ -1,5 +1,6 @@
 package com.lygizos.calculator;
 
+import com.lygizos.calculator.model.CalculationsService;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -8,7 +9,6 @@ import java.time.LocalDate;
 import java.util.Random;
 
 public class CalculationsServiceTests {
-    private final CalculationsService cs = new CalculationsService();
     private static Random random;
 
     @BeforeAll
@@ -24,8 +24,8 @@ public class CalculationsServiceTests {
         double x = 10.5;
         double y = 3.9;
 
-        double result = cs.doAdd(x,y);
-        assertEquals(result, x+y);
+        double result = CalculationsService.doAdd(x,y);
+        assertEquals(x+y, result);
     }
 
     @Test
@@ -33,8 +33,8 @@ public class CalculationsServiceTests {
         double x = -5.4;
         double y = 6;
 
-        double result = cs.doAdd(x, y);
-        assertEquals(result, x + y);
+        double result = CalculationsService.doAdd(x, y);
+        assertEquals(x + y, result);
     }
 
     @Test
@@ -42,8 +42,8 @@ public class CalculationsServiceTests {
         double x = 0;
         double y = -0;
 
-        double result = cs.doAdd(x,y);
-        assertEquals(result, x+y);
+        double result = CalculationsService.doAdd(x,y);
+        assertEquals(x+y, result);
     }
 
     @Test
@@ -51,8 +51,8 @@ public class CalculationsServiceTests {
         double x = random.nextDouble();
         double y = random.nextDouble();
 
-        double result = cs.doAdd(x,y);
-        assertEquals(result, x+y);
+        double result = CalculationsService.doAdd(x,y);
+        assertEquals(x+y, result);
     }
 
     /**
@@ -63,8 +63,8 @@ public class CalculationsServiceTests {
         double x = 10.5;
         double y = 3.9;
 
-        double result = cs.doMulti(x,y);
-        assertEquals(result, x*y);
+        double result = CalculationsService.doMulti(x,y);
+        assertEquals(x*y, result);
     }
 
     @Test
@@ -72,8 +72,8 @@ public class CalculationsServiceTests {
         double x = -19;
         double y = -2;
 
-        double result = cs.doMulti(x,y);
-        assertEquals(result, x*y);
+        double result = CalculationsService.doMulti(x,y);
+        assertEquals(x*y, result);
     }
 
     @Test
@@ -81,8 +81,8 @@ public class CalculationsServiceTests {
         double x = 9.8;
         double y = -20;
 
-        double result = cs.doMulti(x,y);
-        assertEquals(result, x*y);
+        double result = CalculationsService.doMulti(x,y);
+        assertEquals(x*y, result);
     }
 
     @Test
@@ -90,8 +90,8 @@ public class CalculationsServiceTests {
         double x = 0;
         double y = 3.9;
 
-        double result = cs.doMulti(x,y);
-        assertEquals(result, x*y);
+        double result = CalculationsService.doMulti(x,y);
+        assertEquals(x*y, result);
     }
 
     @Test
@@ -99,8 +99,8 @@ public class CalculationsServiceTests {
         double x = -10.5;
         double y = 0;
 
-        double result = cs.doMulti(x,y);
-        assertEquals(result, x*y);
+        double result = CalculationsService.doMulti(x,y);
+        assertEquals(x*y, result);
     }
 
     @Test
@@ -108,8 +108,8 @@ public class CalculationsServiceTests {
         double x = 0;
         double y = 0;
 
-        double result = cs.doMulti(x,y);
-        assertEquals(result, x*y);
+        double result = CalculationsService.doMulti(x,y);
+        assertEquals(x*y, result);
     }
 
     @Test
@@ -117,8 +117,8 @@ public class CalculationsServiceTests {
         double x = random.nextDouble();
         double y = random.nextDouble();
 
-        double result = cs.doMulti(x,y);
-        assertEquals(result, x*y);
+        double result = CalculationsService.doMulti(x,y);
+        assertEquals(x*y, result);
     }
 
     /**
@@ -129,8 +129,8 @@ public class CalculationsServiceTests {
         double x = 10.5;
         double y = 3.9;
 
-        double result = cs.doDivide(x,y);
-        assertEquals(result, x/y);
+        double result = CalculationsService.doDivide(x, y);
+        assertEquals(x / y, result);
     }
 
     @Test
@@ -138,8 +138,8 @@ public class CalculationsServiceTests {
         double x = -19;
         double y = -2;
 
-        double result = cs.doDivide(x,y);
-        assertEquals(result, x/y);
+        double result = CalculationsService.doDivide(x, y);
+        assertEquals(x / y, result);
     }
 
     @Test
@@ -147,8 +147,8 @@ public class CalculationsServiceTests {
         double x = 9.8;
         double y = -20;
 
-        double result = cs.doDivide(x,y);
-        assertEquals(result, x/y);
+        double result = CalculationsService.doDivide(x,y);
+        assertEquals(x/y, result);
     }
 
     @Test
@@ -156,8 +156,8 @@ public class CalculationsServiceTests {
         double x = 0;
         double y = 3.9;
 
-        double result = cs.doDivide(x,y);
-        assertEquals(result, x/y);
+        double result = CalculationsService.doDivide(x,y);
+        assertEquals(x/y, result);
     }
 
     @Test
@@ -165,8 +165,8 @@ public class CalculationsServiceTests {
         double x = 0;
         double y = -10.5;
 
-        double result = cs.doDivide(x,y);
-        assertEquals(result, x/y);
+        double result = CalculationsService.doDivide(x,y);
+        assertEquals(x/y, result);
     }
 
     @Test
@@ -174,8 +174,8 @@ public class CalculationsServiceTests {
         double x = -999.999;
         double y = 0;
 
-        ArithmeticException ex = assertThrows(ArithmeticException.class, () -> cs.doDivide(x,y));
-        assertEquals(ex.getMessage(), "Division by zero! -.-");
+        Double result = CalculationsService.doDivide(x,y);
+        assertTrue(result.isInfinite());
     }
 
     @Test
@@ -183,8 +183,8 @@ public class CalculationsServiceTests {
         double x = random.nextDouble();
         double y = random.nextDouble(1,Double.MAX_VALUE);
 
-        double result = cs.doDivide(x,y);
-        assertEquals(result, x/y);
+        double result = CalculationsService.doDivide(x,y);
+        assertEquals(x/y, result);
     }
 
     /**
@@ -195,8 +195,8 @@ public class CalculationsServiceTests {
         double x = 53.678;
         double y = 32.9;
 
-        double result = cs.doSubtract(x,y);
-        assertEquals(result, x-y);
+        double result = CalculationsService.doSubtract(x,y);
+        assertEquals(x-y, result);
     }
 
     @Test
@@ -204,8 +204,8 @@ public class CalculationsServiceTests {
         double x = -19.0194;
         double y = -29.2;
 
-        double result = cs.doSubtract(x,y);
-        assertEquals(result, x-y);
+        double result = CalculationsService.doSubtract(x,y);
+        assertEquals(x-y, result);
     }
 
     @Test
@@ -213,8 +213,8 @@ public class CalculationsServiceTests {
         double x = 109.7;
         double y = -20;
 
-        double result = cs.doSubtract(x,y);
-        assertEquals(result, x-y);
+        double result = CalculationsService.doSubtract(x,y);
+        assertEquals(x-y,result);
     }
 
     @Test
@@ -222,8 +222,8 @@ public class CalculationsServiceTests {
         double x = 0;
         double y = 3.9;
 
-        double result = cs.doSubtract(x,y);
-        assertEquals(result, x-y);
+        double result = CalculationsService.doSubtract(x,y);
+        assertEquals(x-y, result);
     }
 
     @Test
@@ -231,8 +231,8 @@ public class CalculationsServiceTests {
         double x = -10.5;
         double y = 0;
 
-        double result = cs.doSubtract(x,y);
-        assertEquals(result, x-y);
+        double result = CalculationsService.doSubtract(x,y);
+        assertEquals(x-y, result);
     }
 
     @Test
@@ -240,8 +240,8 @@ public class CalculationsServiceTests {
         double x = 0;
         double y = 0;
 
-        double result = cs.doSubtract(x,y);
-        assertEquals(result, x-y);
+        double result = CalculationsService.doSubtract(x,y);
+        assertEquals(x-y, result);
     }
 
     @Test
@@ -249,8 +249,8 @@ public class CalculationsServiceTests {
         double x = random.nextDouble();
         double y = random.nextDouble();
 
-        double result = cs.doSubtract(x,y);
-        assertEquals(result, x-y);
+        double result = CalculationsService.doSubtract(x,y);
+        assertEquals(x-y, result);
     }
 
     /**
@@ -261,17 +261,16 @@ public class CalculationsServiceTests {
         double x = 53.678;
         double y = 32.9;
 
-        double result = cs.doModulo(x,y);
-        assertEquals(result, x%y);
+        double result = CalculationsService.doModulo(x,y);
+        assertEquals(x%y,result);
     }
 
     @Test
     public void testModuloNegativeDigits() {
         double x = -19.0194;
         double y = -29.2;
-
-        double result = cs.doModulo(x,y);
-        assertEquals(result, x%y);
+        double result = CalculationsService.doModulo(x,y);
+        assertEquals(x%y, result);
     }
 
     @Test
@@ -279,8 +278,8 @@ public class CalculationsServiceTests {
         double x = 109.7;
         double y = -20;
 
-        double result = cs.doModulo(x,y);
-        assertEquals(result, x%y);
+        double result = CalculationsService.doModulo(x,y);
+        assertEquals(x%y, result);
     }
 
     @Test
@@ -288,8 +287,8 @@ public class CalculationsServiceTests {
         double x = 0;
         double y = 3.9;
 
-        double result = cs.doModulo(x,y);
-        assertEquals(result, x%y);
+        double result = CalculationsService.doModulo(x,y);
+        assertEquals(x%y, result);
     }
 
     @Test
@@ -297,17 +296,17 @@ public class CalculationsServiceTests {
         double x = 0;
         double y = -10.5;
 
-        double result = cs.doModulo(x,y);
-        assertEquals(result, x%y);
+        double result = CalculationsService.doModulo(x,y);
+        assertEquals(x%y, result);
     }
 
     @Test
     public void test_Modulo_Throws_Exception_When_Nominator_is_Zero() {
-        double x = -999.999;
+        double x = 3;
         double y = 0;
 
-        ArithmeticException ex = assertThrows(ArithmeticException.class, () -> cs.doModulo(x,y));
-        assertEquals(ex.getMessage(), "Division by zero! -.-");
+        Double result = CalculationsService.doModulo(x,y);
+        assertTrue(result.isNaN());
     }
 
     @Test
@@ -315,7 +314,7 @@ public class CalculationsServiceTests {
         double x = random.nextDouble();
         double y = random.nextDouble();
 
-        double result = cs.doModulo(x,y);
-        assertEquals(result, x%y);
+        double result = CalculationsService.doModulo(x,y);
+        assertEquals(x%y, result);
     }
 }
