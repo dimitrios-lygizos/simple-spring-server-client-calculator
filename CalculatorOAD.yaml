@@ -26,17 +26,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/successfulResponse'
         '400':
-          description: Bad Request (add)
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/error'
+          $ref: '#/components/responses/badRequestError'
+
         default:
-          description: Client or server error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/genError'
+          $ref: '#/components/responses/genericError'
   /multiply:
     post:
       description: Perform multiply operation, multiply first_number by second_number and get the result.
@@ -54,17 +47,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/successfulResponse'
         '400':
-          description: Bad Request (multiply)
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/error'
+          $ref: '#/components/responses/badRequestError'
+
         default:
-          description: Client or server error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/genError'
+          $ref: '#/components/responses/genericError'
+
   /divide:
     post:
       description: Perform divide operation, divide first_number by second_number and retrieve the result.
@@ -82,17 +69,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/successfulResponse'
         '400':
-          description: Bad Request (divide) error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/error'
+          $ref: '#/components/responses/badRequestError'
+
         default:
-          description: Client or server error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/genError'
+          $ref: '#/components/responses/genericError'
+
   /subtract:
     post:
       description: subtract second_number from first_number and retrieve the result.
@@ -110,17 +91,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/successfulResponse'
         '400':
-          description: Bad Request (subtract) error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/error'
+          $ref: '#/components/responses/badRequestError'
+
         default:
-          description: Client or server error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/genError'
+          $ref: '#/components/responses/genericError'
+
   /modulo:
     post:
       description: get the remainder of first_number divided by second_number.
@@ -138,17 +113,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/successfulResponse'
         '400':
-          description: Bad Request (modulo)
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/error'
+          $ref: '#/components/responses/badRequestError'
         default:
-          description: Client or server error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/genError'
+          $ref: '#/components/responses/genericError'
 components:
   schemas:
     inputNumberObject:
@@ -202,6 +169,19 @@ components:
         message:
           type: string
           example: "Unexpected error occurred"
+  responses:
+    badRequestError:
+      description: Bad Request Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error'
+    genericError:
+      description: Client or server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/genError'
 
 
 
